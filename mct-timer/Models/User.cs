@@ -353,6 +353,35 @@ namespace mct_timer.Models
                 Info = "Default background",
                 IsBingBg = false
             };
+
+
+            var bgw15 = new Background()
+            {
+                id = "W15",
+                Author = "system",
+                Url = "wait15.jpg",  //short url just name of the file
+                Location = "",
+                LocationLink = "",
+                BgType = PresetType.Wait,
+                Locked = true,
+                Visible = true,
+                Info = "Default background",
+                IsBingBg = true
+            };
+
+            var bgw16 = new Background()
+            {
+                id = "W16",
+                Author = "system",
+                Url = "wait16.jpg",  //short url just name of the file
+                Location = "",
+                LocationLink = "",
+                BgType = PresetType.Wait,
+                Locked = true,
+                Visible = true,
+                Info = "Default background",
+                IsBingBg = true
+            };
             var bgln0 = new Background()
             {
                 id = "LN0",
@@ -541,12 +570,23 @@ namespace mct_timer.Models
                 Visible = true,
                 IsBingBg = true,
             };
-
+            var bgc11 = new Background()
+            {
+                id = "C11",
+                Author = "system",
+                Url = "coffee11.jpg",  //short url just name of the file
+                Location = "",
+                LocationLink = "",
+                BgType = PresetType.Coffee,
+                Locked = true,
+                Visible = true,
+                IsBingBg = true,
+            };
             this.Backgrounds.AddRange(new []{ 
-                bgc0,bgc1,bgc2,bgc3,bgc4,bgc5,bgc6,bgc7,bgc8,bgc9,bgc10,
+                bgc0,bgc1,bgc2,bgc3,bgc4,bgc5,bgc6,bgc7,bgc8,bgc9,bgc10,bgc11,
                 bgl0,bgl1,bgl2,bgl3,
                 bgln0,bgln1,bgln2,bgln3,bgln4,
-                bgw0,bgw1,bgw2,bgw3,bgw4,bgw5,bgw6,bgw7,bgw8,bgw9,bgw10,bgw11,bgw12,bgw13,bgw14,
+                bgw0,bgw1,bgw2,bgw3,bgw4,bgw5,bgw6,bgw7,bgw8,bgw9,bgw10,bgw11,bgw12,bgw13,bgw14,bgw15,bgw16
 
             });
 

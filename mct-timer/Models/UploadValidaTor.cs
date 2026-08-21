@@ -92,7 +92,7 @@ namespace mct_timer.Models
             // Don't trust the file name sent by the client. To display
             // the file name, HTML-encode the value.
             var trustedFileNameForDisplay = WebUtility.HtmlEncode(
-                formFile.FileName);
+                formFile.FileName ?? string.Empty);
 
             // Check the file length. This check doesn't catch files that only have 
             // a BOM as their content.
@@ -201,7 +201,7 @@ namespace mct_timer.Models
             return Array.Empty<byte>();
         }
 
-        private  bool IsValidFileExtensionAndSignature(string fileName, Stream data, string[] permittedExtensions)
+        private  bool IsValidFileExtensionAndSignature(string? fileName, Stream data, string[] permittedExtensions)
         {
             if (string.IsNullOrEmpty(fileName) || data == null || data.Length == 0)
             {
