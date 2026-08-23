@@ -27,13 +27,12 @@ namespace mct_timer.Controllers
     {        private readonly TelemetryClient _logger;
         private readonly IOptions<ConfigMng> _config;
         private readonly IHttpContextAccessor _context;
-        private readonly UsersContext _ac_context;        private readonly IDalleGenerator _gen;
+        private readonly UsersContext _ac_context;        private readonly IGptImageGenerator _gptImage;
         private readonly IBlobRepo _blobRepo;
         private readonly string[] _permitedext = { ".jpeg", ".jpg", ".png" };
         private readonly string _tempFilePath = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)),"tmp");
         private readonly UploadValidator _validator;
         private readonly IPromptValidator _promptValidator;
-        private readonly IDalleGenerator _dalle;
         private readonly IKeyVaultMng _keyVaultMng;
         private readonly AltchaService _altcha;
 
@@ -47,7 +46,7 @@ namespace mct_timer.Controllers
             UploadValidator validator,
             IBlobRepo blobRepo,
             IKeyVaultMng keyVault,
-            IDalleGenerator dalle,
+            IGptImageGenerator gptImage,
             IPromptValidator promptValidator,
             AltchaService altcha)
         {
@@ -58,9 +57,8 @@ namespace mct_timer.Controllers
             _blobRepo = blobRepo;
             _validator = validator;
             _promptValidator = promptValidator;
-            _dalle = dalle;
+            _gptImage = gptImage;
             _keyVaultMng = keyVault;
-            _gen = dalle;
             _altcha = altcha;
 
             if (AuthService.GetInstance == null)
@@ -75,7 +73,7 @@ namespace mct_timer.Controllers
                 _blobRepo, 
                 _ac_context,
                 _keyVaultMng,
-                _dalle);
+                _gptImage);
 
             return View(avtest);
         }        [JwtAuthentication]

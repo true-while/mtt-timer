@@ -70,9 +70,9 @@ BlobRepo blob = new BlobRepo(config["StorageAccountName"], config["ContainerName
 builder.Services.AddSingleton<IBlobRepo>(blob);
 
 
-// Dalle generator
-DalleGenerator dalleGen = new DalleGenerator(config["OpenAIEndpoint"], config["OpenAIKey"], config["OpenAIModel"], ai);
-builder.Services.AddSingleton<IDalleGenerator>(dalleGen);
+// GPT-4 Vision Image generator
+GptImageGenerator gptImageGen = new GptImageGenerator(config["OpenAIEndpoint"], config["OpenAIKey"], config["OpenAIModel"], ai);
+builder.Services.AddSingleton<IGptImageGenerator>(gptImageGen);
 
 
 //KeyVault

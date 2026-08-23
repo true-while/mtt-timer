@@ -15,19 +15,19 @@ namespace mct_timer.Controllers
     {
         private TelemetryClient _tmClient;
         private IBlobRepo _blRepo;
-        private IDalleGenerator _dalle;
+        private IGptImageGenerator _gptImage;
         private IOptions<ConfigMng> _config;
 
         public ImgSrvController(
             TelemetryClient tmClient,
             IOptions<ConfigMng> config,
-            IDalleGenerator dalle,
+            IGptImageGenerator gptImage,
             IBlobRepo blRepo) {
 
           _tmClient = tmClient;
             _blRepo = blRepo;
             _config = config;
-            _dalle = dalle;
+            _gptImage = gptImage;
             ViewData["CDNUrl"] = _config.Value.WebCDN;
         }
 
@@ -96,7 +96,7 @@ namespace mct_timer.Controllers
                             };
                             _tmClient.TrackEvent("AIImageGenerationRequested", aiRequestProperties);
                               // Validate prompt before sending to AI service
-                            var validationResult = _dalle.ValidatePrompt(prompt);
+                            var validationResult = _gptImage.ValidatePrompt(prompt);
                             if (!validationResult.IsValid)
                             {
                                 _tmClient.TrackTrace($"Prompt validation failed: {validationResult.Reason} - Prompt: {prompt}", 
@@ -114,7 +114,7 @@ namespace mct_timer.Controllers
                                 return new OkObjectResult("Prompt rejected: " + validationResult.Reason);
                             }                            try
                             {
-                                var imggen = await _dalle.GetImage(prompt);
+                                var imggen = await _gptImage.GetImage(prompt);
                                 mdata.Add("RevisedPrompt", imggen.RevisedPrompt);
                                 await _blRepo.SaveImageAsync((BlobRepo.LaregeImgfolder + fileName).ToLower(), imggen.ImageBytes, (Dictionary<string,string>)mdata);
                                 try

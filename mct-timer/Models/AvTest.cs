@@ -8,15 +8,15 @@ namespace mct_timer.Models
         private IBlobRepo blobRepo;
         private UsersContext ac_context;
         private IKeyVaultMng keyVaultMng;
-        private IDalleGenerator dalle;
+        private IGptImageGenerator gptImage;
 
-        public AvTest(IOptions<ConfigMng> config, IBlobRepo blobRepo, UsersContext ac_context, IKeyVaultMng keyVaultMng, IDalleGenerator dalle)
+        public AvTest(IOptions<ConfigMng> config, IBlobRepo blobRepo, UsersContext ac_context, IKeyVaultMng keyVaultMng, IGptImageGenerator gptImage)
         {
             this.config = config;
             this.blobRepo = blobRepo;
             this.ac_context = ac_context;
             this.keyVaultMng = keyVaultMng;
-            this.dalle = dalle;
+            this.gptImage = gptImage;
         }
 
         public string GetConfigValue
@@ -51,11 +51,11 @@ namespace mct_timer.Models
             }
         }
 
-        public bool GetDalle
+        public bool GetGptImage
         {
             get
             {
-                return dalle.TestConnection();
+                return gptImage.TestConnection();
             }
         }
     }

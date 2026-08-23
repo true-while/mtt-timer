@@ -7,6 +7,7 @@
     <RootNamespace>mct_timer</RootNamespace>
     <UserSecretsId>9146150e-2dd6-4daf-bdf7-1f40ee18034f</UserSecretsId>
     <ApplicationInsightsResourceId>/subscriptions/88567e9b-b727-467c-a328-91743855cc1d/resourceGroups/mtt-timer/providers/microsoft.insights/components/mtt-timer-sage</ApplicationInsightsResourceId>
+    <NoWarn>$(NoWarn);CS8618</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
